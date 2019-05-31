@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: mytest
+
+server:
+  port: 8091
+
