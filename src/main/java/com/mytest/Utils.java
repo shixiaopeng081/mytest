@@ -1,8 +1,15 @@
 package com.mytest;
 
+import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZoneOffset;
+import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Date;
@@ -11,6 +18,8 @@ import java.util.List;
 /**
  * Created by shixi  on 2018/11/29
  */
+@Data
+@Slf4j
 public class Utils {
     public static void main(String[] args) {
         //时间戳毫秒转LocalDateTime
@@ -19,7 +28,35 @@ public class Utils {
 //        System.out.println(localDateTime);
 //
 //        System.out.println(getRemainSecondsOneDay(new Date()));
-        listTest();
+//        listTest();
+
+//        List<String> ss = new ArrayList<>();
+//        ss.add("1");
+//        ss.add("2");
+//        ss.add("3");
+//
+//        String [] aa = new String[ss.size()];
+//        ss.toArray(aa);
+//
+//        log.info("ss : {}",ss);
+//        log.info("aa : {}",aa);
+
+        String dateStr = "2019-02-28";
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate localDate = LocalDate.parse(dateStr, dateTimeFormatter);
+
+        int day = localDate.getDayOfMonth();
+        if(day == 10 ){
+            System.out.println("上旬日");
+        }else if(day ==20){
+            System.out.println("中旬日");
+        }else if(day==localDate.lengthOfMonth()){
+            System.out.println("下旬日");
+        }
+        System.out.println(localDate.getDayOfMonth());
+        System.out.println(localDate.lengthOfMonth());
+
+
     }
 
     public static Integer getRemainSecondsOneDay(Date currentDate) {

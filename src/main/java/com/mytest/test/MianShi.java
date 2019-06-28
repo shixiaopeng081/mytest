@@ -18,19 +18,22 @@ import java.util.stream.Collectors;
 public class MianShi {
 
     public static void main(String[] args) {
-//        int i1 =128;
-//        Integer I1 = 128;
-//        Integer I2 = 128;
-//        Integer I3 = new Integer(127);
-//        Integer I4 = new Integer(127);
-//        Double D1 = 100.0;
-//        Double D2= 100.0;
-//
-//        System.out.println(i1==I1);
-//        System.out.println(I2==I1);
-//        System.out.println(I3==I4);
-//        System.out.println(D1==D2);
-//
+        int i1 =128;
+        int i2 =129;
+        Integer I1 = 128;
+        Integer I2 = 128;
+        Integer II = 129;
+        Integer I3 = new Integer(127);
+        Integer I4 = new Integer(127);
+        Double D1 = 100.0;
+        Double D2= 100.0;
+
+        System.out.println(i1==I1);
+        System.out.println(I2==I1);
+        System.out.println(I3==I4);
+        System.out.println(D1==D2);
+        System.out.println(i2==II);
+
 //        List<ReplyDTO> replyDTOS = new ArrayList<>();
 //
 //        ReplyDTO replyDTO1 = new ReplyDTO();
