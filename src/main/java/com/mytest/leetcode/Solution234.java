@@ -17,15 +17,18 @@ public class Solution234 {
         ListNode listNode = new ListNode(1);
         ListNode listNode2 = new ListNode(2);
         ListNode listNode3 = new ListNode(3);
-        ListNode listNode4 = new ListNode(2);
-        ListNode listNode5 = new ListNode(1);
+        ListNode listNode4 = new ListNode(4);
+        ListNode listNode5 = new ListNode(5);
 
         listNode.next = listNode2;
         listNode2.next = listNode3;
         listNode3.next = listNode4;
         listNode4.next = listNode5;
 
-        log.info("{}",solution.isPalindrome1(listNode));
+//        log.info("{}",solution.isPalindrome1(listNode));
+
+        log.info("{}",solution.isPalindrome2(listNode));
+
     }
 
     public boolean isPalindrome(ListNode head) {
@@ -48,6 +51,7 @@ public class Solution234 {
         return true;
     }
 
+    //这个看不懂
     public boolean isPalindrome1(ListNode head) {
 
         // 排除异常情况: 链表为空或只有一位时 返回真
@@ -107,6 +111,50 @@ public class Solution234 {
             }
             slow = slow.next;
             fast = fast.next;
+        }
+        return true;
+    }
+
+    public boolean isPalindrome2(ListNode head) {
+
+        // 排除异常情况: 链表为空或只有一位时 返回真
+        if (head == null || head.next == null) {
+            return true;
+        }
+        // 排除异常情况: 链表只有两位时 直接判断这两位是否相等
+        if (head.next.next == null) {
+            return head.val == head.next.val;
+        }
+        // 先找到中间的节点，
+        // 声明快慢指针
+        ListNode slow = head;
+        ListNode fast = head;
+
+        while(fast.next != null && fast.next.next != null){
+
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+
+        //反转后半部分
+        ListNode half = slow.next;
+        ListNode currNode = half.next;
+        half.next = null;
+        while(currNode != null){
+            ListNode listNode = currNode.next;
+            currNode.next = half;
+            half = currNode;
+            currNode = listNode;
+        }
+
+        //比较
+        while(half != null){
+            if(half.val != head.val){
+                return false;
+            }else{
+                half = half.next;
+                head = head.next;
+            }
         }
         return true;
     }
