@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.concurrent.BrokenBarrierException;
@@ -21,48 +22,53 @@ import java.util.concurrent.CyclicBarrier;
  */
 public class Test2 {
     public static void main(String[] args) {//throws InterruptedException, BrokenBarrierException {
-        DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+        DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
         System.out.println(LocalDateTime.now());
-        LocalDateTime localDateTime = LocalDateTime.parse("2018-07-20T07:25:59.097Z", df);
-        String format = df.format(localDateTime);
-        System.out.println(format);
+        LocalDateTime localDateTime = LocalDateTime.parse("2019-07-30T16:00:00", df);
 
+        Long startTime = localDateTime.toInstant(ZoneOffset.ofHours(8)).toEpochMilli();
+        System.out.println(startTime);
 
-        //当前时间Date
-        Date now = new Date();
-        System.out.println(now);
-//Wed Jan 31 23:32:03 GMT+08:00 2018
-
-//例如我的环境时区为：(UTC+08:00)北京，重庆，香港特别行政区，乌鲁木齐（+0800）
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
-        System.out.println(sdf.getTimeZone());
-        System.out.println(sdf.format(now));
-
-        String utcTime = "2018-01-31T14:32:19Z";
-        SimpleDateFormat df1 = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
-//设置时区UTC
-        df1.setTimeZone(TimeZone.getTimeZone("UTC"));
-//格式化，转当地时区时间
-        Date after = null;
-        try {
-            after = df1.parse(utcTime);
-
-            System.out.println(after);
-
-            df1.applyPattern("yyyy-MM-dd HH:mm:ss");
-//默认时区
-            df1.setTimeZone(TimeZone.getDefault());
-            System.out.println(df1.format(after));
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
-
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+//
+//        String format = df.format(localDateTime);
+//        System.out.println(format);
+//
+//
+//        //当前时间Date
+//        Date now = new Date();
+//        System.out.println(now);
+////Wed Jan 31 23:32:03 GMT+08:00 2018
+//
+////例如我的环境时区为：(UTC+08:00)北京，重庆，香港特别行政区，乌鲁木齐（+0800）
+//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
+//        System.out.println(sdf.getTimeZone());
+//        System.out.println(sdf.format(now));
+//
+//        String utcTime = "2018-01-31T14:32:19Z";
+//        SimpleDateFormat df1 = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
+////设置时区UTC
+//        df1.setTimeZone(TimeZone.getTimeZone("UTC"));
+////格式化，转当地时区时间
+//        Date after = null;
+//        try {
+//            after = df1.parse(utcTime);
+//
+//            System.out.println(after);
+//
+//            df1.applyPattern("yyyy-MM-dd HH:mm:ss");
+////默认时区
+//            df1.setTimeZone(TimeZone.getDefault());
+//            System.out.println(df1.format(after));
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
+//
+//
+//        try {
+//            Thread.sleep(5000);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
 //        Test2.class.wait();
 //        List<Integer> list = new ArrayList<>();
 //        List<Integer> newList = new ArrayList<>();

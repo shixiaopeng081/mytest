@@ -12,9 +12,9 @@ import java.util.regex.Pattern;
 public class Test {
     public static void main(String[] args) {
         ThreadPoolExecutor executor = new ThreadPoolExecutor(5, 10, 2, TimeUnit.MILLISECONDS,
-                new ArrayBlockingQueue<Runnable>(5));
+                new ArrayBlockingQueue<Runnable>(0));
 
-        for(int i=0;i<15;i++){
+        for(int i=0;i<21;i++){
             MyTask myTask = new MyTask(i);
             executor.execute(myTask);
             System.out.println("executor.getTaskCount()========>" + executor.getTaskCount());

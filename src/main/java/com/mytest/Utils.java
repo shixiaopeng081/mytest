@@ -41,20 +41,24 @@ public class Utils {
 //        log.info("ss : {}",ss);
 //        log.info("aa : {}",aa);
 
-        String dateStr = "2019-02-28";
-        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        LocalDate localDate = LocalDate.parse(dateStr, dateTimeFormatter);
+//        String dateStr = "2019-02-28";
+//        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+//        LocalDate localDate = LocalDate.parse(dateStr, dateTimeFormatter);
+//
+//        int day = localDate.getDayOfMonth();
+//        if(day == 10 ){
+//            System.out.println("上旬日");
+//        }else if(day ==20){
+//            System.out.println("中旬日");
+//        }else if(day==localDate.lengthOfMonth()){
+//            System.out.println("下旬日");
+//        }
+//        System.out.println(localDate.getDayOfMonth());
+//        System.out.println(localDate.lengthOfMonth());
 
-        int day = localDate.getDayOfMonth();
-        if(day == 10 ){
-            System.out.println("上旬日");
-        }else if(day ==20){
-            System.out.println("中旬日");
-        }else if(day==localDate.lengthOfMonth()){
-            System.out.println("下旬日");
-        }
-        System.out.println(localDate.getDayOfMonth());
-        System.out.println(localDate.lengthOfMonth());
+        String phoneNum = "13718348719";
+        phoneNum = phoneNum.substring(0,3) + "****"+phoneNum.substring(7);
+        System.out.println(phoneNum);
 
 
     }
