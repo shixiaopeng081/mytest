@@ -52,12 +52,23 @@ public class MainTest {
         System.out.println(localDateTime.minusDays(1));
         System.out.println(plusDays);
         System.out.println(localDateTime);
+        System.out.println(localDate+"");
         System.out.println(localDate.atTime(0,0));
         System.out.println(date);
         System.out.println(date.getTime());
 
         regexMobile("1&fdsfdsa=fdsafdsa&sssss=wq");
 
+        long days = localDateTime.toLocalDate().toEpochDay() - plusDays.toLocalDate().toEpochDay();//得出相差天数
+        System.out.println("得出相差天数: "+days);
+        LocalTime now = LocalTime.now();
+        System.out.println("LocalTime.now(): "+ now);
+        try {
+            Thread.sleep(200);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println(LocalTime.now().isAfter(now));
 
         // 集合1
         List<SkillUpgrade> lists = new ArrayList<>();
