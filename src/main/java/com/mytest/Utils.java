@@ -3,6 +3,7 @@ package com.mytest;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
+import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -14,6 +15,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.TreeMap;
 
 /**
  * Created by shixi  on 2018/11/29
@@ -56,10 +58,63 @@ public class Utils {
 //        System.out.println(localDate.getDayOfMonth());
 //        System.out.println(localDate.lengthOfMonth());
 
-        String phoneNum = "13718348719";
-        phoneNum = phoneNum.substring(0,3) + "****"+phoneNum.substring(7);
-        System.out.println(phoneNum);
+//        String phoneNum = "13718348719";
+//        phoneNum = phoneNum.substring(0,3) + "****"+phoneNum.substring(7);
+//        System.out.println(phoneNum);
 
+//
+//        String ss = "0101";
+//
+//        System.out.println(Integer.parseInt(ss.toUpperCase()));
+//
+//        String str = "sf,ds";
+//        System.out.println(str.split(",").length);
+//
+//        TreeMap treeMap = new TreeMap();
+//        treeMap.put(4,"da");
+//        treeMap.put(6,"da");
+//        treeMap.put(3,"da");
+//        treeMap.put(1,"da");
+//
+//        log.info("{}",treeMap);
+//
+//        BigDecimal num1 = new BigDecimal(0.005);
+//        log.info("{}",num1);
+//        BigDecimal num2 = new BigDecimal(1000000);
+//
+//        num1 = num1.subtract(num2);
+//
+//        log.info("{}",num1);
+//
+//        java.util.Date utilDate=new Date();
+//        java.sql.Date date = new java.sql.Date(utilDate.getTime());
+//
+//        log.info("{}",date.getMonth());
+//
+//        log.info("{}",date.toLocalDate().getMonth().getValue());
+//        log.info("{}",date.toLocalDate().getMonthValue());
+//        log.info("{}",date.toLocalDate().lengthOfMonth());
+
+//        String dateStr = "2019-09-19";5ba121000000000000000000--db.getCollection('idea_content_sem').find({"_id":{$lt: ObjectId("5d41bb000000000000000000")}}).count()
+        String dateStr = "2019-09-19";
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate localDate = LocalDate.parse(dateStr, dateTimeFormatter);
+
+        long timestamp = localDate.atStartOfDay(ZoneOffset.ofHours(8)).toInstant().toEpochMilli();
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            Date parse = sdf.parse(dateStr);
+            System.out.println(parse.getTime());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println(timestamp);
+
+
+        String objectId = Long.toHexString(timestamp/1000)+"0000000000000000";
+        System.out.println(objectId);
 
     }
 
