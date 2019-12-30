@@ -1,12 +1,13 @@
 package com.mytest.utils;
 
+import java.sql.Date;
 import java.time.*;
 
 public class Java8DateTimeTester {
     public static void main(String args[]){
         Java8DateTimeTester java8tester = new Java8DateTimeTester();
         java8tester.testLocalDateTime();
-        java8tester.testZonedDateTime();
+//        java8tester.testZonedDateTime();
     }
 
     public void testLocalDateTime(){
@@ -17,6 +18,9 @@ public class Java8DateTimeTester {
 
         LocalDate date1 = currentTime.toLocalDate();
         System.out.println("date1: " + date1);
+        LocalDate localDate = date1.withDayOfMonth(date1.lengthOfMonth());
+        Date sqlDate = new Date(localDate.atStartOfDay(ZoneOffset.ofHours(8)).toInstant().toEpochMilli());
+        System.out.println("sqlDate: " + sqlDate);
 
         Month month = currentTime.getMonth();
         int day = currentTime.getDayOfMonth();
