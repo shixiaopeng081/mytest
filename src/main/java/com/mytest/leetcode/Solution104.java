@@ -9,10 +9,10 @@ import java.util.List;
  * Created by shixi  on 2019/6/24
  */
 @Slf4j
-public class Solution108 {
+public class Solution104 {
 
     public static void main(String[] args) {
-        Solution108 solution = new Solution108();
+        Solution104 solution = new Solution104();
         TreeNode root = new TreeNode(1);
 
         TreeNode left = new TreeNode(2);

@@ -1,19 +1,19 @@
 package com.mytest.leetcode;
 
 import lombok.extern.slf4j.Slf4j;
-import sun.reflect.generics.tree.Tree;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
  * Created by shixi  on 2019/6/24
  */
 @Slf4j
-public class Solution101 {
+public class Solution107 {
 
     public static void main(String[] args) {
-        Solution101 solution = new Solution101();
+        Solution107 solution = new Solution107();
         TreeNode root = new TreeNode(1);
 
         TreeNode left = new TreeNode(2);
@@ -30,24 +30,28 @@ public class Solution101 {
 //        right.left = four;
         right.right = three;
 
-        boolean result = solution.isSymmetric(root);
+        List<List<Integer>> result = solution.levelOrderBottom(root);
         log.info("{}", result);
 
     }
 
-    public boolean isSymmetric(TreeNode root) {
-        List<TreeNode> treeNodeList = new ArrayList<>();
+    public List<List<Integer>> levelOrderBottom(TreeNode root) {
         if(root == null){
-            return true;
+            return Collections.emptyList();
         }
+        List<TreeNode> treeNodeList = new ArrayList<>();
         treeNodeList.add(root.left);
         treeNodeList.add(root.right);
-        Boolean[] result = {true};
+        List<List<Integer>> result = new ArrayList<>();
+        List<Integer> integerList = new ArrayList();
+        integerList.add(root.val);
+        result.add(integerList);
         digui(treeNodeList, result);
-        return result[0];
+        Collections.reverse(result);
+        return result;
     }
 
-    public void digui(List<TreeNode> treeNodeList, Boolean[] result){
+    public void digui(List<TreeNode> treeNodeList, List<List<Integer>> result){
         List<Integer> integerList = new ArrayList();
         List<TreeNode> nextList = new ArrayList<>();
         for(TreeNode treeNode : treeNodeList){
@@ -55,40 +59,15 @@ public class Solution101 {
                 integerList.add(treeNode.val);
                 nextList.add(treeNode.left);
                 nextList.add(treeNode.right);
-            }else{
-                integerList.add(null);
             }
         }
         if(integerList.size() == 0){
             return ;
         }
-        int i = 0;
-        int j = integerList.size() -1;
-        while(i < j){
-            if((Integer)integerList.get(i) != (Integer) integerList.get(j)){
-                result[0] = false;
-                break;
-            }
-            i++;
-            j--;
-        }
-        if(result[0]){
+        result.add(integerList);
+        if(nextList.size() > 0){
             digui(nextList, result);
         }
-    }
-
-    public boolean isSymmetric1(TreeNode root) {
-        return isMirror(root,root);
-    }
-
-    public boolean isMirror(TreeNode left, TreeNode right){
-        if(left == null && right == null){
-            return true;
-        }
-        if(left == null || right == null){
-            return false;
-        }
-        return left.val == right.val && isMirror(left.left, right.right) && isMirror(left.right,right.left);
     }
 }
 
