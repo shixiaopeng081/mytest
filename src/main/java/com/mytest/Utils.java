@@ -1,6 +1,9 @@
 package com.mytest;
 
+import com.mytest.vo.Person;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 import java.math.BigDecimal;
@@ -16,6 +19,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.TreeMap;
+import java.util.stream.Collectors;
 
 /**
  * Created by shixi  on 2018/11/29
@@ -120,6 +124,18 @@ ss.add(0,"4");
         big = big.add(new BigDecimal("1"));
         log.info("{}",big);
 
+
+        List<Long> lists = new ArrayList<>();
+
+        lists.add(1651324292856855L);
+        lists.add(1654514023985160L);
+
+        log.info("{}",lists.contains(1651324292856855L));
+        log.info("{}",lists.contains(1654514023985160L));
+        log.info("{}",lists.contains(1L));
+
+        listObjectTest();
+
     }
 
     public static Integer getRemainSecondsOneDay(Date currentDate) {
@@ -158,5 +174,29 @@ ss.add(0,"4");
 
         }
     }
+
+    public static void listObjectTest(){
+
+        List<Person> personList = new ArrayList<>();
+        Person person1 = Person.builder()
+                .name("aaa")
+                .sex(1)
+                .build();
+        Person person2 = Person.builder()
+                .name("bbbb")
+                .sex(2)
+                .build();
+
+        personList.add(person1);
+        personList.add(person2);
+        personList.stream().map(person -> {
+            person.setName("shixiaopeng");
+            return person;
+        }).collect(Collectors.toList());
+
+        log.info("{}",personList);
+    }
+
+
 
 }
