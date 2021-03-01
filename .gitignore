@@ -3,3 +3,4 @@
 *.iml
 target/
 java/lang/annotations.xml
+java/util/annotations.xml

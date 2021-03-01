@@ -1,5 +1,8 @@
 package com.mytest;
 
+import com.alibaba.fastjson.JSON;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Data;
 import org.apache.tomcat.jni.Local;
 
@@ -115,6 +118,21 @@ public class MainTest {
 
 //        MainTest mainTest = new MainTest();
 //        mainTest.sss();
+        s.setListaa(listx);
+
+        //jaskson
+        ObjectMapper objectMapper = new ObjectMapper();
+        try {
+            String asString = objectMapper.writeValueAsString(s);
+            System.out.println(asString);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+
+        //fastjson
+        final String s1 = JSON.toJSONString(s);
+        System.out.println(s1);
+
     }
 
     private static String regexMobile(String content){
@@ -135,6 +153,8 @@ public class MainTest {
         int selectNum;
 
         int appearNum;
+
+        List<SkillUpgrade> listaa;
     }
 
 

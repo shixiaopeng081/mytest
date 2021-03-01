@@ -70,22 +70,22 @@ class Test2{
         Node head = node1;
 
 
-//        Node current = head.getNext();
-//        head.setNext(null);
-//        while(current != null){
-//
-//            Node node = current.getNext();
-//            current.setNext(head);
-//            head = current;
-//            current = node;
-//
-//        }
-//
-//        log.info("{}",head);
-//        log.info("{}",node1);
-//
-//        head = reverseKGroup(head, 3);
-//        log.info("{}", head);
+        Node current = head.getNext();
+        head.setNext(null);
+        while(current != null){
+
+            Node node = current.getNext();
+            current.setNext(head);
+            head = current;
+            current = node;
+
+        }
+
+        log.info("{}",head);
+        log.info("{}",node1);
+
+        head = reverseKGroup(head, 3);
+        log.info("{}", head);
 
         log.info("{}",reverse(head));
 
