@@ -21,6 +21,7 @@ public class Solution653 {
         TreeNode treeNode6 = new TreeNode(6);
         TreeNode treeNode7 = new TreeNode(7);
 
+        //左右
         treeNode5.left = treeNode3;
         treeNode5.right = treeNode6;
 
@@ -29,9 +30,26 @@ public class Solution653 {
 
         treeNode6.right = treeNode7;
 
+        //父
+        treeNode2.parent = treeNode3;
+        treeNode4.parent = treeNode3;
+
+        treeNode7.parent = treeNode6;
+
+        treeNode3.parent = treeNode5;
+        treeNode6.parent = treeNode5;
+
+        /**
+         * 中序遍历二叉树
+         */
+        //参数为根节点
+//        solution.inOrder(treeNode5);
+//        solution.preOrder(treeNode5);
+//        solution.postOrder(treeNode5);
+
         // 先遍历，再查找
-        log.info("{}", solution.findTarget(treeNode5, 9));
-        log.info("{}", solution.findTarget1(treeNode5, 9));
+//        log.info("{}", solution.findTarget(treeNode5, 9));
+//        log.info("{}", solution.findTarget1(treeNode5, 9));
 
 
         TreeNode node2 = new TreeNode(2);
@@ -42,9 +60,111 @@ public class Solution653 {
         node2.right = node3;
 
         //bst查找法
-        log.info("{}", solution.preOrder(treeNode5, treeNode5,28));
-        log.info("{}", solution.findTarget2(treeNode5, treeNode5,28));
+//        log.info("{}", solution.preOrder(treeNode5, treeNode5,28));
+//        log.info("{}", solution.findTarget2(treeNode5, treeNode5,28));
 
+
+        //插入
+        TreeNode treeNode1 = new TreeNode(1);
+        boolean b = solution.insertNode(treeNode5, treeNode1);
+        log.info("insert result {}", b);
+        solution.inOrder(treeNode5);
+
+        TreeNode treeNode9 = new TreeNode(9);
+        boolean b9 = solution.insertNode(treeNode5, treeNode9);
+        log.info("insert result {}", b9);
+        solution.inOrder(treeNode5);
+
+        solution.removeNode(treeNode5, 3);
+        log.info("删除操作");
+        solution.inOrder(treeNode5);
+    }
+
+    /**
+     * 删除节点，分三种情况
+     * 1、叶子节点，直接删除
+     * 2、该节点只有左子树或右子树, 子节点直接上移
+     * 3、左右都有子树，利用中序找到上一个顺序节点，替换。然后删除上一个节点之前的位置，且替换
+     *
+     * @param root
+     * @param val
+     */
+    public void removeNode(TreeNode root, int val){
+        if(root == null){
+            return;
+        }
+
+        if(root.val > val){
+            removeNode(root.left, val);
+        }else if(root.val < val){
+            removeNode(root.right, val);
+        }else if(root.val == val){
+            if(root.left == null && root.right == null){
+                //定位在叶子节点
+                TreeNode parent = root.parent;
+                if(parent.left == root){
+                    parent.left = null;
+                }
+                if(parent.right == root){
+                    parent.right = null;
+                }
+                return;
+            }else if(root.left != null && root.right == null){
+                //定位在只有左子节点
+                TreeNode parent = root.parent;
+                parent.left = root.left;
+                return;
+            }else if(root.left == null && root.right != null){
+                //定位在只有右子节点
+                TreeNode parent = root.parent;
+                parent.right = root.right;
+                return;
+            }else{
+                //左右节点都有
+                TreeNode node = root.left;
+                while(node.right != null){
+                    node = node.right;
+                }
+                //node就是当前节点的中序前驱节点
+                log.info("node 节点 {}", node.val);
+                //替换
+                root.val = node.val;
+                //删除原node节点
+                removeNode(node, node.val);
+            }
+        }
+    }
+
+    /**
+     * 插入节点，成功返回true，已经存在返回false
+     *
+     * @param root
+     * @param node
+     * @return
+     */
+    public boolean insertNode(TreeNode root, TreeNode node){
+        if(root == null){
+            root = node;
+            return true;
+        }
+        if(root.val > node.val){
+            if(root.left == null){
+                root.left = node;
+                node.parent = root;
+            }else{
+                return insertNode(root.left, node);
+            }
+        }else if(root.val < node.val){
+            if(root.right == null){
+                root.right = node;
+                node.parent = root;
+            }else{
+                return insertNode(root.right, node);
+            }
+        }else if(root.val == node.val){
+            return false;
+        }
+        return true;
     }
 
     public boolean findTarget(TreeNode root, int k) {
@@ -145,6 +265,33 @@ public class Solution653 {
             return findV(node.left, v);
         }
     }
+
+
+    public void inOrder(TreeNode root){
+        if(root == null){
+            return;
+        }
+
+        inOrder(root.left);
+        log.info("in ************{}", root.val);
+        inOrder(root.right);
+    }
+
+    public void preOrder(TreeNode tree){
+        if (tree!=null) {
+            log.info("pre ************{}", tree.val);
+            preOrder(tree.left);
+            preOrder(tree.right);
+        }
+    }
+
+    public void postOrder(TreeNode tree) {
+        if (tree!=null) {
+            postOrder(tree.left);
+            postOrder(tree.right);
+            log.info("post ************{}", tree.val);
+        }
+    }
     
 }
 
@@ -152,6 +299,7 @@ class TreeNode {
       int val;
       TreeNode left;
       TreeNode right;
+      TreeNode parent;
       TreeNode(int x) {
           val = x;
       }
