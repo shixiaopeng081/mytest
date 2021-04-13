@@ -14,7 +14,7 @@ public class Test {
         ThreadPoolExecutor executor = new ThreadPoolExecutor(5, 10, 2, TimeUnit.MILLISECONDS,
                 new ArrayBlockingQueue<Runnable>(5));
 
-        for(int i=0;i<15;i++){
+        for(int i=0;i<30;i++){
             MyTask myTask = new MyTask(i);
             System.out.println("i==========================================="+i);
             executor.execute(myTask);

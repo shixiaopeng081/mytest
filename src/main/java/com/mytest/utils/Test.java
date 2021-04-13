@@ -25,35 +25,35 @@ public class Test {
 //        int y = 0;
 //        System.out.println(y+1>y);
 
-        int x = 3;//0011
-        int y = 2;//0010
-        System.out.println(x|y);
-        System.out.println(x&y);
-        System.out.println(x^y);
-
-        int b = 13;//0000 1101
-        System.out.println(b>>2);//11
-        System.out.println(b>>>2);//0000 0011
-
-
-        Map<Long, Long> map = new HashMap<>();
-        map.put(345678904567890L,345678904567890L);
-
-        Long data = 345678904567890L;
-
-        System.out.println(map.containsKey(data));
-
-        List<String> strList = new ArrayList();
-
-        strList.add("qwfdsa");
-        strList.add("11111");
-        System.out.println(strList.contains("qwfdsa"));
+//        int x = 3;//0011
+//        int y = 2;//0010
+//        System.out.println(x|y);
+//        System.out.println(x&y);
+//        System.out.println(x^y);
+//
+//        int b = 13;//0000 1101
+//        System.out.println(b>>2);//11
+//        System.out.println(b>>>2);//0000 0011
+//
+//
+//        Map<Long, Long> map = new HashMap<>();
+//        map.put(345678904567890L,345678904567890L);
+//
+//        Long data = 345678904567890L;
+//
+//        System.out.println(map.containsKey(data));
+//
+//        List<String> strList = new ArrayList();
+//
+//        strList.add("qwfdsa");
+//        strList.add("11111");
+//        System.out.println(strList.contains("qwfdsa"));
         ConcurrentHashMap concurrentHashMap = new ConcurrentHashMap();
         concurrentHashMap.put("1111","11111");
-        concurrentHashMap.put("222","2222");
-        concurrentHashMap.put("333","3333");
-
-        concurrentHashMap.remove("222");
+//        concurrentHashMap.put("222","2222");
+//        concurrentHashMap.put("333","3333");
+//
+//        concurrentHashMap.remove("222");
 
         log.info("{}", concurrentHashMap);
 
