@@ -62,9 +62,11 @@ public class StreamTest {
                 new Student("lawrence", 33, 69)
         );
 
+        staff.forEach(student -> student.setName("1111"));
+        staff.stream().forEach(student -> student.setName("22222"));
         //map操作
         List<String> collect = staff.stream().map(x -> x.getName()).collect(Collectors.toList());
-        System.out.println(collect); //[mkyong, jack, lawrence]
+        System.out.println("*************"+collect); //[mkyong, jack, lawrence]
 
 
         List<Student> collect1 = staff.stream().map(student -> {

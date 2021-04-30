@@ -1,11 +1,14 @@
 package com.mytest;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by shixi  on 2019/3/4
  */
+@Slf4j
 public class OutOfMemoryErrorTest {
 
     public static void main(String[] args) {
@@ -17,7 +20,7 @@ public class OutOfMemoryErrorTest {
 
         int [] nums = {4,3,2,7,8,2,3,1};
         OutOfMemoryErrorTest ss = new OutOfMemoryErrorTest();
-        ss.findDisappearedNumbers(nums);
+        log.info("{}",ss.findDisappearedNumbers(nums));
     }
 
     public List<Integer> findDisappearedNumbers(int[] nums) {

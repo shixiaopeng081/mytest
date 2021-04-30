@@ -18,6 +18,7 @@ public class Solution13 {
 
     public int romanToInt(String s) {
         Map<String, Integer> map = new HashMap<>();
+        map.size();
         map.put("I", 1);
         map.put("IV", 4);
         map.put("V", 5);

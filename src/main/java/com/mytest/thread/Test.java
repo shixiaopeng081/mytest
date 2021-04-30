@@ -1,10 +1,6 @@
 package com.mytest.thread;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * Created by shixi  on 2018/9/4
@@ -61,6 +57,17 @@ public class Test {
         System.out.println("executor.getActiveCount()========>" + executor.getActiveCount());
         System.out.println("线程池中线程数目："+executor.getPoolSize()+"，队列中等待执行的任务数目："+
                 executor.getQueue().size()+"，已执行玩别的任务数目："+executor.getCompletedTaskCount());
+
+        ScheduledExecutorService executor1 = Executors.newScheduledThreadPool(3);
+        for (int i = 0; i < 3; i++) {
+            final int index = i;
+            Runnable runnable = new Runnable() {
+                public void run() {
+                    System.out.println(Thread.currentThread().getName() + "延时1s后，每5s执行一次工作任务--- >" + index);
+                }
+            };
+            executor1.scheduleAtFixedRate(runnable, 1, 5, TimeUnit.SECONDS);
+        }
     }
 }
 
