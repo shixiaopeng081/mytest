@@ -8,7 +8,7 @@ import java.util.concurrent.*;
 public class Test {
     public static void main(String[] args) {
         ThreadPoolExecutor executor = new ThreadPoolExecutor(5, 10, 2, TimeUnit.MILLISECONDS,
-                new ArrayBlockingQueue<Runnable>(5));
+                new LinkedBlockingQueue<>(5));
 
         for(int i=0;i<30;i++){
             MyTask myTask = new MyTask(i);

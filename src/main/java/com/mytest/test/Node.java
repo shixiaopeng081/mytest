@@ -28,11 +28,11 @@ class  Test{
         Node node4 = new Node(4,node5);
         Node node3 = new Node(3,node4);
         Node node2 = new Node(2,node3);
-        Node node1 = new Node(1,node2);
+        Node head = new Node(1,node2);
 
 
-        Node head = node1;
-        Node curNode = node1.getNext();
+
+        Node curNode = head.getNext();
         head.setNext(null);
         while(curNode != null){
             //System.out.println(head.getT().toString());
